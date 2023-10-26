@@ -1,0 +1,3369 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+    
+    
+      
+        <title>IM Websocket Protocol - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#im-websocket-protocol" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IM Websocket Protocol
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RISCV-IM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API文档
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API文档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    IM Websocket Protocol
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    IM Websocket Protocol
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    关键字解释
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websocket" class="md-nav__link">
+    连接websocket
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    相关HTTP请求介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="相关HTTP请求介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user_name" class="md-nav__link">
+    通过user_name查看用户基本信息
+  </a>
+  
+    <nav class="md-nav" aria-label="通过user_name查看用户基本信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    请求&amp;响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user_id" class="md-nav__link">
+    通过user_id查看用户基本信息
+  </a>
+  
+    <nav class="md-nav" aria-label="通过user_id查看用户基本信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    请求&amp;响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws-api" class="md-nav__link">
+    WS API列表
+  </a>
+  
+    <nav class="md-nav" aria-label="WS API列表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-" class="md-nav__link">
+    0 - 创建群
+  </a>
+  
+    <nav class="md-nav" aria-label="0 - 创建群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-" class="md-nav__link">
+    1 - 创建消息
+  </a>
+  
+    <nav class="md-nav" aria-label="1 - 创建消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    2 - 群主或群管理员邀请新的群成员
+  </a>
+  
+    <nav class="md-nav" aria-label="2 - 群主或群管理员邀请新的群成员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-" class="md-nav__link">
+    3 - 退出群
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - 退出群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-" class="md-nav__link">
+    4 - 踢出群聊
+  </a>
+  
+    <nav class="md-nav" aria-label="4 - 踢出群聊">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-" class="md-nav__link">
+    5 - 修改群名
+  </a>
+  
+    <nav class="md-nav" aria-label="5 - 修改群名">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-" class="md-nav__link">
+    6 - 修改群头像
+  </a>
+  
+    <nav class="md-nav" aria-label="6 - 修改群头像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-" class="md-nav__link">
+    7 - 解散群
+  </a>
+  
+    <nav class="md-nav" aria-label="7 - 解散群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-" class="md-nav__link">
+    8 - 删除消息
+  </a>
+  
+    <nav class="md-nav" aria-label="8 - 删除消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-" class="md-nav__link">
+    9 - 撤回消息
+  </a>
+  
+    <nav class="md-nav" aria-label="9 - 撤回消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-" class="md-nav__link">
+    10 - 设置管理员
+  </a>
+  
+    <nav class="md-nav" aria-label="10 - 设置管理员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-" class="md-nav__link">
+    11 - 取消管理员
+  </a>
+  
+    <nav class="md-nav" aria-label="11 - 取消管理员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-" class="md-nav__link">
+    12 - 转让群主
+  </a>
+  
+    <nav class="md-nav" aria-label="12 - 转让群主">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-" class="md-nav__link">
+    13 - 修改群公告
+  </a>
+  
+    <nav class="md-nav" aria-label="13 - 修改群公告">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-" class="md-nav__link">
+    14 - 发送好友请求
+  </a>
+  
+    <nav class="md-nav" aria-label="14 - 发送好友请求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-" class="md-nav__link">
+    15 - 处理好友请求
+  </a>
+  
+    <nav class="md-nav" aria-label="15 - 处理好友请求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-" class="md-nav__link">
+    16 - 删除好友
+  </a>
+  
+    <nav class="md-nav" aria-label="16 - 删除好友">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-" class="md-nav__link">
+    17 - 加载所有群聊基本信息
+  </a>
+  
+    <nav class="md-nav" aria-label="17 - 加载所有群聊基本信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-" class="md-nav__link">
+    18 -  加载某一个群聊的所有历史消息
+  </a>
+  
+    <nav class="md-nav" aria-label="18 - 加载某一个群聊的所有历史消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-" class="md-nav__link">
+    19 - 阅读了某一个群聊的所有消息
+  </a>
+  
+    <nav class="md-nav" aria-label="19 - 阅读了某一个群聊的所有消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-" class="md-nav__link">
+    20 - 加载所有联系人信息
+  </a>
+  
+    <nav class="md-nav" aria-label="20 - 加载所有联系人信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_67" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_68" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-" class="md-nav__link">
+    21 - 设置消息免打扰
+  </a>
+  
+    <nav class="md-nav" aria-label="21 - 设置消息免打扰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_69" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_70" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_71" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-" class="md-nav__link">
+    22 - 取消消息免打扰
+  </a>
+  
+    <nav class="md-nav" aria-label="22 - 取消消息免打扰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_72" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_73" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_74" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-" class="md-nav__link">
+    23 - 置顶聊天
+  </a>
+  
+    <nav class="md-nav" aria-label="23 - 置顶聊天">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_75" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_76" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_77" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-" class="md-nav__link">
+    24 - 取消置顶聊天
+  </a>
+  
+    <nav class="md-nav" aria-label="24 - 取消置顶聊天">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_78" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_79" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_80" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-" class="md-nav__link">
+    25 - 审核入群请求
+  </a>
+  
+    <nav class="md-nav" aria-label="25 - 审核入群请求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_81" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_82" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_83" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-" class="md-nav__link">
+    26 - 用户注销
+  </a>
+  
+    <nav class="md-nav" aria-label="26 - 用户注销">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_84" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_85" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_86" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-" class="md-nav__link">
+    27 - 查看用户信息
+  </a>
+  
+    <nav class="md-nav" aria-label="27 - 查看用户信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_87" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_88" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-" class="md-nav__link">
+    28 - 普通群成员邀请新的群成员
+  </a>
+  
+    <nav class="md-nav" aria-label="28 - 普通群成员邀请新的群成员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_89" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_90" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_91" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    关键字解释
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websocket" class="md-nav__link">
+    连接websocket
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    相关HTTP请求介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="相关HTTP请求介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user_name" class="md-nav__link">
+    通过user_name查看用户基本信息
+  </a>
+  
+    <nav class="md-nav" aria-label="通过user_name查看用户基本信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    请求&amp;响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user_id" class="md-nav__link">
+    通过user_id查看用户基本信息
+  </a>
+  
+    <nav class="md-nav" aria-label="通过user_id查看用户基本信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    请求&amp;响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws-api" class="md-nav__link">
+    WS API列表
+  </a>
+  
+    <nav class="md-nav" aria-label="WS API列表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-" class="md-nav__link">
+    0 - 创建群
+  </a>
+  
+    <nav class="md-nav" aria-label="0 - 创建群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-" class="md-nav__link">
+    1 - 创建消息
+  </a>
+  
+    <nav class="md-nav" aria-label="1 - 创建消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    2 - 群主或群管理员邀请新的群成员
+  </a>
+  
+    <nav class="md-nav" aria-label="2 - 群主或群管理员邀请新的群成员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-" class="md-nav__link">
+    3 - 退出群
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - 退出群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-" class="md-nav__link">
+    4 - 踢出群聊
+  </a>
+  
+    <nav class="md-nav" aria-label="4 - 踢出群聊">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-" class="md-nav__link">
+    5 - 修改群名
+  </a>
+  
+    <nav class="md-nav" aria-label="5 - 修改群名">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-" class="md-nav__link">
+    6 - 修改群头像
+  </a>
+  
+    <nav class="md-nav" aria-label="6 - 修改群头像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-" class="md-nav__link">
+    7 - 解散群
+  </a>
+  
+    <nav class="md-nav" aria-label="7 - 解散群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-" class="md-nav__link">
+    8 - 删除消息
+  </a>
+  
+    <nav class="md-nav" aria-label="8 - 删除消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-" class="md-nav__link">
+    9 - 撤回消息
+  </a>
+  
+    <nav class="md-nav" aria-label="9 - 撤回消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-" class="md-nav__link">
+    10 - 设置管理员
+  </a>
+  
+    <nav class="md-nav" aria-label="10 - 设置管理员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-" class="md-nav__link">
+    11 - 取消管理员
+  </a>
+  
+    <nav class="md-nav" aria-label="11 - 取消管理员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-" class="md-nav__link">
+    12 - 转让群主
+  </a>
+  
+    <nav class="md-nav" aria-label="12 - 转让群主">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-" class="md-nav__link">
+    13 - 修改群公告
+  </a>
+  
+    <nav class="md-nav" aria-label="13 - 修改群公告">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-" class="md-nav__link">
+    14 - 发送好友请求
+  </a>
+  
+    <nav class="md-nav" aria-label="14 - 发送好友请求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-" class="md-nav__link">
+    15 - 处理好友请求
+  </a>
+  
+    <nav class="md-nav" aria-label="15 - 处理好友请求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-" class="md-nav__link">
+    16 - 删除好友
+  </a>
+  
+    <nav class="md-nav" aria-label="16 - 删除好友">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-" class="md-nav__link">
+    17 - 加载所有群聊基本信息
+  </a>
+  
+    <nav class="md-nav" aria-label="17 - 加载所有群聊基本信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-" class="md-nav__link">
+    18 -  加载某一个群聊的所有历史消息
+  </a>
+  
+    <nav class="md-nav" aria-label="18 - 加载某一个群聊的所有历史消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    发请求条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-" class="md-nav__link">
+    19 - 阅读了某一个群聊的所有消息
+  </a>
+  
+    <nav class="md-nav" aria-label="19 - 阅读了某一个群聊的所有消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-" class="md-nav__link">
+    20 - 加载所有联系人信息
+  </a>
+  
+    <nav class="md-nav" aria-label="20 - 加载所有联系人信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_67" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_68" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-" class="md-nav__link">
+    21 - 设置消息免打扰
+  </a>
+  
+    <nav class="md-nav" aria-label="21 - 设置消息免打扰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_69" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_70" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_71" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-" class="md-nav__link">
+    22 - 取消消息免打扰
+  </a>
+  
+    <nav class="md-nav" aria-label="22 - 取消消息免打扰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_72" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_73" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_74" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-" class="md-nav__link">
+    23 - 置顶聊天
+  </a>
+  
+    <nav class="md-nav" aria-label="23 - 置顶聊天">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_75" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_76" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_77" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-" class="md-nav__link">
+    24 - 取消置顶聊天
+  </a>
+  
+    <nav class="md-nav" aria-label="24 - 取消置顶聊天">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_78" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_79" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_80" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-" class="md-nav__link">
+    25 - 审核入群请求
+  </a>
+  
+    <nav class="md-nav" aria-label="25 - 审核入群请求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_81" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_82" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_83" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-" class="md-nav__link">
+    26 - 用户注销
+  </a>
+  
+    <nav class="md-nav" aria-label="26 - 用户注销">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_84" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_85" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_86" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-" class="md-nav__link">
+    27 - 查看用户信息
+  </a>
+  
+    <nav class="md-nav" aria-label="27 - 查看用户信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_87" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_88" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-" class="md-nav__link">
+    28 - 普通群成员邀请新的群成员
+  </a>
+  
+    <nav class="md-nav" aria-label="28 - 普通群成员邀请新的群成员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_89" class="md-nav__link">
+    发请求时机
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_90" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_91" class="md-nav__link">
+    响应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="im-websocket-protocol">IM Websocket Protocol</h1>
+<h2 id="_1">关键字解释</h2>
+<p>mtype —— 消息类型，可能是"text", "gif", "image", "file", "video", "audio" ,"multi"</p>
+<p>rtype —— 群聊类型，可能是"group", "private_chat"</p>
+<p>左侧：即前端页面中的group_list</p>
+<p>右侧：即前端页面中的message_list</p>
+<p>成员页：显示群聊成员的页</p>
+<p>用户页：显示用户信息的页</p>
+<h2 id="websocket">连接websocket</h2>
+<pre><code class="language-javascript">// 前端js
+FullWSUrl = 'ws://'
+            + window.location.host // 本地 若部署则相应更换
+            + ws_url // 后端会通过http相应发&quot;ws_url&quot;字段
+const chatSocket = new WebSocket(FullWSUrl, [], {
+    headers: {
+        'Authorization': jwtToken // 后端签发
+    }
+});
+</code></pre>
+<h2 id="http">相关HTTP请求介绍</h2>
+<ol>
+<li>比较常用，放在这里作为参照</li>
+<li>不确定前端怎么方便，因此还提供 op = 27 的websocket形式请求，与http形式完全等价</li>
+</ol>
+<h3 id="user_name">通过user_name查看用户基本信息</h3>
+<h4 id="_2">发请求时机</h4>
+<ol>
+<li>
+<p>刚登录</p>
+</li>
+<li>
+<p>任何原因进入某用户页（从通讯录中进入，从群聊成员页中进入，发送好友申请、处理好友申请时进入，提及功能中进入）</p>
+</li>
+</ol>
+<h4 id="_3">请求&amp;响应</h4>
+<pre><code class="language-python">
+</code></pre>
+<h3 id="user_id">通过user_id查看用户基本信息</h3>
+<h4 id="_4">发请求时机</h4>
+<p>任何原因进入某用户页（从通讯录中进入，从群聊成员页中进入，发送好友申请、处理好友申请时进入，提及功能中进入）</p>
+<h4 id="_5">请求&amp;响应</h4>
+<pre><code class="language-python">
+</code></pre>
+<h2 id="ws-api">WS API列表</h2>
+<pre><code class="language-python">CREATE_ROOM = 0 # 创建群
+CREATE_MESSAGE = 1 # 创建消息
+INVITE_ROOM_MEMBER = 2 # 群主或群管理员邀请新的群成员
+EXIT_ROOM = 3 # 退出群
+DELETE_ROOM_MEMBER = 4 # 踢出群聊
+CHANGE_ROOM_NAME = 5 # 修改群名
+CHANGE_ROOM_IMAGE = 6 # 修改群头像
+DELETE_ROOM = 7 # 解散群
+DELETE_MESSAGE = 8 # 删除消息
+RECALL_MESSAGE = 9 # 撤回消息
+SET_ADMIN = 10 # 设置管理员
+REMOVE_ADMIN = 11 # 取消管理员
+TRASFER_OWNER = 12 # 转让群主
+CHANGE_ANNOUCEMENT = 13 # 修改群公告
+SEND_FRIEND_REQUEST = 14 # 发送好友请求
+PROCESS_FRIEND_REQUEST = 15 # 处理好友请求
+DELETE_FRIEND = 16 # 删除好友
+LOAD_ROOMS = 17 # 加载所有群聊信息
+LOAD_HISTORY_MESSAGES = 18 # 加载某一个群聊的所有历史消息
+READ_ALL_MESSAGES = 19 # 阅读了某一个群聊的所有消息
+LOAD_CONTACTS = 20 # 加载所有联系人信息
+DO_NOT_DISTURB = 21 # 设置消息免打扰
+ALLOW_DISTURB = 22 # 撤销消息免打扰
+SET_AS_TOP = 23 # 置顶聊天
+REMOVE_FROM_TOP = 24 # 取消置顶聊天
+REVIEW_MEMBERSHIP_REQUESTS = 25 # 审核入群请求
+CANCEL_ACCOUNT = 26 # 用户注销
+GET_USER_INFO = 27 # 查看用户信息
+SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员 
+</code></pre>
+<h3 id="0-">0 - 创建群</h3>
+<h4 id="_6">发请求时机</h4>
+<ol>
+<li>用户点击了"rtype"为 "private_chat"的群聊成员页的 "+" 按钮</li>
+<li>用户点击了创建群聊的 "+" 按钮</li>
+</ol>
+<h4 id="_7">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;: 0
+    &quot;data&quot;: {
+        &quot;rtype&quot;: &quot;group&quot;,
+        &quot;owner_id&quot;:1,
+        &quot;members_list&quot;:[1, 2, 3, 4]
+    }
+}
+</code></pre>
+<h4 id="_8">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;: 0,
+    &quot;data&quot;: {
+        &quot;rtype&quot;: &quot;group&quot;,
+         &quot;owner_id&quot;:1,
+        &quot;receivers_list&quot;:[1, 2, 3, 4],
+        &quot;room_id&quot;:1,
+        &quot;room_name&quot;:&quot;&quot;,
+         &quot;room_image&quot;:&quot;&quot;,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;... 创建群聊，群成员： ....&quot;
+    }
+}
+</code></pre>
+<h3 id="1-">1 - 创建消息</h3>
+<h4 id="_9">发请求时机</h4>
+<p>​      用户在输入框发送消息</p>
+<h4 id="_10">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:1,
+    &quot;data&quot;: {
+        &quot;mtype&quot;:&quot;text&quot;,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;content&quot;:&quot;&quot;
+    }
+}
+</code></pre>
+<h4 id="_11">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:1,
+    &quot;data&quot;: {
+        &quot;mtype&quot;:&quot;text&quot;,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;content&quot;:&quot;&quot;,
+        &quot;index&quot;:&quot;&quot;,
+        &quot;message_id&quot;:&quot;&quot;,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;unread_cnt&quot;:3
+    }
+}
+</code></pre>
+<h3 id="2-">2 - 群主或群管理员邀请新的群成员</h3>
+<h4 id="_12">发请求时机</h4>
+<p>​   群主或群管理员点击了 rtype 为 "group" 的群聊成员页的 "+" 按钮，然后选中一个自己的好友</p>
+<h4 id="_13">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;: 2,
+    &quot;data&quot;: {
+        &quot;room_id&quot;: 1,
+        &quot;inviter_id&quot;: 1,
+        &quot;invitee_id&quot;:2
+    }
+}
+</code></pre>
+<h4 id="_14">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;: 2,
+    &quot;data&quot;: {
+        &quot;room_id&quot;: 1,
+        &quot;inviter_id&quot;: 1,
+        &quot;invitee_id&quot;:2,
+        &quot;room_name&quot;:&quot;&quot;,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;... 邀请 ... 进入群聊&quot;,
+    }
+}
+</code></pre>
+<h3 id="3-">3 - 退出群</h3>
+<h4 id="_15">发请求时机</h4>
+<p>​   用户在群聊成员页点击"删除并退出群聊"按钮</p>
+<h4 id="_16">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:3,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;old_member_id&quot;:1,
+    }
+}
+</code></pre>
+<h4 id="_17">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:3,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;old_member_id&quot;:1,
+        &quot;related_message&quot;:&quot;... 退出群聊&quot;,
+        &quot;time&quot;: &quot;&quot;
+    }
+}
+</code></pre>
+<h3 id="4-">4 - 踢出群聊</h3>
+<h4 id="_18">发请求时机</h4>
+<p>​   群主、群管理员点击群聊成员页的 "-" 按钮</p>
+<h4 id="_19">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:4,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;kicked_id&quot;:2,
+    }
+}
+</code></pre>
+<h4 id="_20">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:4,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;kicked_id&quot;:2,
+        &quot;time&quot;: &quot;&quot;,
+        &quot;related_message&quot;: &quot;... 被踢出群聊&quot;
+    }
+}
+</code></pre>
+<h3 id="5-">5 - 修改群名</h3>
+<h4 id="_21">发请求时机</h4>
+<p>​   群成员点击群聊成员页的"修改群名"按钮</p>
+<h4 id="_22">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:5,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;new_name&quot;:&quot;锐科5交流群&quot;
+    }
+}
+</code></pre>
+<h4 id="_23">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:5,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;new_name&quot;:&quot;锐科5交流群&quot;,
+        &quot;related_message&quot;:&quot;... 将群名由 ... 修改为 ...&quot;
+    }
+}
+</code></pre>
+<h3 id="6-">6 - 修改群头像</h3>
+<h4 id="_24">发请求时机</h4>
+<p>​   群成员点击群聊成员页的"修改群头像"按钮</p>
+<h4 id="_25">请求</h4>
+<p>还没想好，之后补全</p>
+<h4 id="_26">响应</h4>
+<h3 id="7-">7 - 解散群</h3>
+<h4 id="_27">发请求时机</h4>
+<p>​   群主点击 rtype 为 "group" 的群聊成员页中的"解散群聊" 按钮</p>
+<h4 id="_28">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:7,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;sender_id&quot;:1
+    }
+}
+</code></pre>
+<h4 id="_29">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:7,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;sender_id&quot;:1,
+        &quot;related_message&quot;:&quot;群主 ... 已解散群聊&quot;,
+        &quot;time&quot;: &quot;&quot;
+    }
+}
+</code></pre>
+<h3 id="8-">8 - 删除消息</h3>
+<h4 id="_30">发请求时机</h4>
+<p>​   用户右键某消息，点击删除</p>
+<h4 id="_31">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:8,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;sender_id&quot;:1,
+        &quot;message_id&quot;:10000
+    }
+}
+</code></pre>
+<h4 id="_32">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:8,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;sender_id&quot;:1,
+        &quot;message_id&quot;:10000,
+        &quot;time&quot;:&quot;&quot;,
+    }
+}
+</code></pre>
+<h3 id="9-">9 - 撤回消息</h3>
+<h4 id="_33">发请求条件</h4>
+<p>​   用户右键选择消息，点击撤回</p>
+<h4 id="_34">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:9,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;sender_id&quot;:1,
+        &quot;index&quot;:500
+    }
+}
+</code></pre>
+<h4 id="_35">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:9,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;rtype&quot;:&quot;group&quot;,
+        &quot;sender_id&quot;:1,
+        &quot;index&quot;:500,
+        &quot;message_id&quot;:10000,
+        &quot;time&quot;:&quot;&quot;,
+    }
+}
+</code></pre>
+<h3 id="10-">10 - 设置管理员</h3>
+<h4 id="_36">发请求条件</h4>
+<p>​   群主在群聊成员表中右键某普通成员，点击“设置为管理员”</p>
+<h4 id="_37">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:10,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;new_admin_id&quot;:2,
+    }
+}
+</code></pre>
+<h4 id="_38">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:10,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;new_admin_id&quot;:2,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;群主 ... 将 ... 添加为群管理员&quot;
+    }
+}
+</code></pre>
+<h3 id="11-">11 - 取消管理员</h3>
+<h4 id="_39">发请求条件</h4>
+<p>​   群主在群聊成员表中右键某管理员，点击“取消群管理员”</p>
+<h4 id="_40">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:11,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;old_admin_id&quot;:2,
+    }
+}
+</code></pre>
+<h4 id="_41">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:11,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;old_admin_id&quot;:2,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;群主 ... 取消了 ... 的群管理员资格&quot;
+    }
+}
+</code></pre>
+<h3 id="12-">12 - 转让群主</h3>
+<h4 id="_42">发请求条件</h4>
+<p>​   群主在群聊成员表中右键某群成员，点击“转让群主”。（最好有个确定弹窗）</p>
+<h4 id="_43">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:12,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;new_owner_id&quot;:2
+    }
+}
+</code></pre>
+<h4 id="_44">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:12,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;new_owner_id&quot;:2,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;...已成为新群主&quot;
+    }
+}
+</code></pre>
+<h3 id="13-">13 - 修改群公告</h3>
+<h4 id="_45">发请求条件</h4>
+<p>​   群主或群管理员在成员页的群公告中点击编辑按钮，修改后，点击保存</p>
+<h4 id="_46">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:13,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;announcement&quot;:&quot;&quot;
+    }
+}
+</code></pre>
+<h4 id="_47">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:13,
+    &quot;data&quot;:{
+        &quot;room_id&quot;:1,
+        &quot;sender_id&quot;:1,
+        &quot;announcement&quot;:&quot;&quot;,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;@所有人：\n ...&quot;,
+    }
+}
+</code></pre>
+<h3 id="14-">14 - 发送好友请求</h3>
+<h4 id="_48">发请求条件</h4>
+<p>​   inviter在添加好友界面，指定了id和name中的任意一个，然后点击“发送好友申请”按钮</p>
+<h4 id="_49">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:14,
+    &quot;data&quot;:{
+        &quot;inviter_id&quot;:1, 
+        &quot;invitee_name&quot;:&quot;&quot;,
+        &quot;invitee_id&quot;:2,
+        &quot;hello_content&quot;:&quot;你好&quot;
+    }
+}
+</code></pre>
+<h4 id="_50">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:14,
+    &quot;data&quot;:{
+        &quot;inviter_id&quot;:1, 
+        &quot;invitee_name&quot;:&quot;&quot;,
+        &quot;invitee_id&quot;:2,
+        &quot;hello_content&quot;:&quot;你好&quot;,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;... 想添加你为朋友&quot;
+    }
+}
+</code></pre>
+<h3 id="15-">15 - 处理好友请求</h3>
+<h4 id="_51">发请求条件</h4>
+<p>​   invitee在处理好友请求界面，点击“同意”或“拒绝”按钮</p>
+<h4 id="_52">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:15,
+    &quot;data&quot;:{
+        &quot;invitee_id&quot;:2,
+        &quot;inviter_id&quot;:1,
+        &quot;is_accept&quot;: true,
+    }
+}
+</code></pre>
+<h4 id="_53">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:15,
+    &quot;data&quot;:{
+        &quot;invitee_id&quot;:2,
+        &quot;inviter_id&quot;:1,
+        &quot;is_accept&quot;: true,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;... 接收/拒绝了您的好友请求&quot;
+    }
+}
+</code></pre>
+<h3 id="16-">16 - 删除好友</h3>
+<h4 id="_54">发请求条件</h4>
+<p>​   deletor在私聊页面的成员页中，点击“清空记录并删除好友”按钮</p>
+<h4 id="_55">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:16,
+    &quot;data&quot;:{
+        &quot;deleter_id&quot;: 1,
+        &quot;deleted_id&quot;: 2
+    }
+}
+</code></pre>
+<h4 id="_56">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:16,
+    &quot;data&quot;:{
+        &quot;deleter_id&quot;: 1,
+        &quot;deleted_id&quot;: 2,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;... 现在还不是您的好友&quot;
+    }
+}
+</code></pre>
+<h3 id="17-">17 - 加载所有群聊基本信息</h3>
+<h4 id="_57">发请求条件</h4>
+<p>​   刚登录</p>
+<h4 id="_58">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:17,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;: 1,
+    }
+}
+</code></pre>
+<h4 id="_59">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:17,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;: 1,
+        &quot;rooms&quot;:[
+              {
+                &quot;room_id&quot;:1,
+                &quot;room_name&quot;:&quot;&quot;,
+                &quot;rtype&quot;: &quot;group&quot;,
+                &quot;on_top&quot;: true,  
+                &quot;unread_cnt&quot;: 3,
+                &quot;latest_update_time&quot;:&quot;&quot;,
+                &quot;latest_message&quot;:{
+                    &quot;message_id&quot;:500,
+                    &quot;sender_id&quot;:1,
+                    &quot;receiver_id&quot;:1,
+                    &quot;mtype&quot;:&quot;text&quot;,
+                    &quot;content&quot;:&quot;&quot;,
+                    &quot;read&quot;:true,
+                    &quot;recalled&quot;:false,
+                }
+              },
+                {
+                    &quot;room_id&quot;:2,
+                    &quot;room_name&quot;:&quot;&quot;,
+                    &quot;rtype&quot;: &quot;private_chat&quot;,
+                    &quot;on_top&quot;: false,
+                    &quot;unread_cnt&quot;: 3,
+                    &quot;latest_update_time&quot;:&quot;&quot;,
+                    &quot;latest_message&quot;:{
+                        &quot;message_id&quot;:501,
+                        &quot;sender_id&quot;:1,
+                        &quot;receiver_id&quot;:2,
+                        &quot;mtype&quot;:&quot;text&quot;,
+                        &quot;content&quot;:&quot;&quot;,
+                        &quot;read&quot;:true,
+                        &quot;recalled&quot;:false
+                  }
+               }
+               ...
+        ]
+    }
+}
+</code></pre>
+<h3 id="18-">18 -  加载某一个群聊的所有历史消息</h3>
+<h4 id="_60">发请求条件</h4>
+<p>​   登录后<strong>第一次</strong>在左侧点击某群聊</p>
+<h4 id="_61">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:18,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;: 1,
+        &quot;room_id&quot;: 1,
+    }
+}
+</code></pre>
+<h4 id="_62">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:18,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;: 1,
+        &quot;room_id&quot;: 1,
+        &quot;messages&quot;: [
+            {
+                 &quot;mtype&quot;:&quot;text&quot;,
+                 &quot;rtype&quot;:&quot;group&quot;,
+                 &quot;room_id&quot;:1,
+                 &quot;sender_id&quot;:1,
+                 &quot;content&quot;:&quot;&quot;,
+                 &quot;index&quot;:&quot;&quot;,
+                 &quot;message_id&quot;:&quot;&quot;,
+                 &quot;time&quot;:&quot;&quot;,
+            },
+            {
+                 &quot;mtype&quot;:&quot;text&quot;,
+                 &quot;rtype&quot;:&quot;group&quot;,
+                 &quot;room_id&quot;:1,
+                 &quot;sender_id&quot;:1,
+                 &quot;content&quot;:&quot;&quot;,
+                 &quot;index&quot;:&quot;&quot;,
+                 &quot;message_id&quot;:&quot;&quot;,
+                 &quot;time&quot;:&quot;&quot;,
+            },
+            ...
+        ]
+    }
+}
+</code></pre>
+<h3 id="19-">19 - 阅读了某一个群聊的所有消息</h3>
+<h4 id="_63">发请求时机</h4>
+<p>​   用户点击左侧某未读消息数不为0的群聊</p>
+<h4 id="_64">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:19,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h4 id="_65">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:19,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1,
+    }
+}
+</code></pre>
+<h3 id="20-">20 - 加载所有联系人信息</h3>
+<h4 id="_66">发请求时机</h4>
+<p>​   刚登录</p>
+<h4 id="_67">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:20,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1
+    }
+}
+</code></pre>
+<h4 id="_68">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:20,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;contacts&quot;:[
+            {
+                &quot;user_id&quot;:2,
+                &quot;user_name&quot;:&quot;&quot;,
+                &quot;email&quot;:&quot;&quot;,
+                &quot;image&quot;:&quot;&quot;,
+            },
+            {
+                &quot;user_id&quot;:3,
+                &quot;user_name&quot;:&quot;&quot;,
+                &quot;email&quot;:&quot;&quot;,
+                &quot;image&quot;:&quot;&quot;,                
+            }
+            ...
+        ]
+    }
+}
+</code></pre>
+<h3 id="21-">21 - 设置消息免打扰</h3>
+<h4 id="_69">发请求时机</h4>
+<p>​   用户在群聊成员页中勾选“消息免打扰”</p>
+<h4 id="_70">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:21,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h4 id="_71">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:21,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h3 id="22-">22 - 取消消息免打扰</h3>
+<h4 id="_72">发请求时机</h4>
+<p>​   用户在群聊成员页中取消勾选“消息免打扰”</p>
+<h4 id="_73">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:22,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h4 id="_74">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:22,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h3 id="23-">23 - 置顶聊天</h3>
+<h4 id="_75">发请求时机</h4>
+<p>​   用户在群聊成员页中勾选“置顶聊天”</p>
+<h4 id="_76">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:23,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h4 id="_77">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:23,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h3 id="24-">24 - 取消置顶聊天</h3>
+<h4 id="_78">发请求时机</h4>
+<p>​   用户在群聊成员页中取消勾选“置顶聊天”</p>
+<h4 id="_79">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:24,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h4 id="_80">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:24,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1
+    }
+}
+</code></pre>
+<h3 id="25-">25 - 审核入群请求</h3>
+<h4 id="_81">发请求时机</h4>
+<p>​   对于群主和群管理员，"... 请求邀请 ... 进入群聊"后面带有 "批准/不批准"按钮，按下按钮时发请求</p>
+<h4 id="_82">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:25,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1,
+        &quot;inviter_id&quot;:2,
+        &quot;invitee_id&quot;:3,
+        &quot;is_accept&quot;:true
+    }   
+}
+</code></pre>
+<h4 id="_83">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:25,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;room_id&quot;:1,
+        &quot;inviter_id&quot;:2,
+        &quot;invitee_id&quot;:3,
+        &quot;is_accept&quot;:true,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;... 已批准 ... 加入群聊/ ... 拒绝 ... 加入群聊&quot;
+    }   
+}
+</code></pre>
+<h3 id="26-">26 - 用户注销</h3>
+<h4 id="_84">发请求时机</h4>
+<p>​   在自己的用户页中点击“注销账号”按钮并点“确定”</p>
+<h4 id="_85">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:26,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+    }
+}
+</code></pre>
+<h4 id="_86">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:26,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;time&quot;:&quot;&quot;,
+    }
+}
+</code></pre>
+<h3 id="27-">27 - 查看用户信息</h3>
+<h4 id="_87">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:27,
+    &quot;data&quot;:{
+        &quot;sender_id&quot;:1,
+        &quot;user_id&quot;:1,
+        &quot;user_name&quot;:&quot;&quot;
+    }
+}
+</code></pre>
+<h4 id="_88">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;:27,
+    &quot;data&quot;:{
+        &quot;user_id&quot;:1,
+        &quot;user_name&quot;:&quot;&quot;,
+        &quot;email&quot;:&quot;&quot;,
+        &quot;image&quot;:&quot;&quot;
+    }
+}
+</code></pre>
+<h3 id="28-">28 - 普通群成员邀请新的群成员</h3>
+<h4 id="_89">发请求时机</h4>
+<p>​   普通群成员点击了 rtype 为 "group" 的群聊成员页的 "+" 按钮，然后选中了一个自己的好友</p>
+<h4 id="_90">请求</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;: 28,
+    &quot;data&quot;: {
+        &quot;room_id&quot;: 1,
+        &quot;inviter_id&quot;: 1,
+        &quot;invitee_id&quot;:2
+    }
+}
+</code></pre>
+<h4 id="_91">响应</h4>
+<pre><code class="language-json">{
+    &quot;op&quot;: 28,
+    &quot;data&quot;: {
+        &quot;room_id&quot;: 1,
+        &quot;inviter_id&quot;: 1,
+        &quot;invitee_id&quot;:2,
+        &quot;time&quot;:&quot;&quot;,
+        &quot;related_message&quot;:&quot;... 请求邀请 ... 进入群聊&quot;
+    }
+}
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+    
+  </body>
+</html>
