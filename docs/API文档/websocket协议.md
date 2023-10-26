@@ -594,6 +594,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
+如果找不到invitee，则invitee_id为-1，其余为空
+
 ### 15 - 处理好友请求
 
 #### 发请求条件
