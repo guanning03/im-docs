@@ -77,7 +77,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "data": {
     	"rtype": "group",
         "owner_id":1,
-    	"members_list":[1, 2, 3, 4]
+    	"receivers_list":[1, 2, 3, 4]
     }
 }
 ```
@@ -105,6 +105,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         	"index":20,
         	"message_id":"你们已经成为好友，开始聊天吧！",
         	"time":"",
+             "recalled":false,
+             "read":true
         }
     }
 }
@@ -127,10 +129,40 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
             "msg_op":0,
         	"room_id":1,
         	"sender_id":1,
-        	"content":"",
+        	"content":"... 创建了群聊，群聊成员有：...",
         	"index":20,
-        	"message_id":"... 创建了群聊，群聊成员有：...",
+        	"message_id":100,
         	"time":"",
+             "recalled":false,
+             "read":true
+        }
+    }
+}
+```
+
+自己的聊天
+
+```json
+{
+    "op": 0,
+    "data": {
+    	"rtype": "group",
+         "owner_id":1,
+    	"receivers_list":[1],
+	    "room_id":1,
+	    "room_name":"",
+         "room_image":"",
+         "related_message":{
+        	"mtype":"operation",
+            "msg_op":0,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"您在这里可以收到其他用户的好友请求，也可以发消息给自己",
+        	"index":20,
+        	"message_id":100,
+        	"time":"",
+             "recalled":false,
+             "read":true
         }
     }
 }
@@ -173,10 +205,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "room_id":1,
         "sender_id":1,
         "content":"",
-        "index":"",
-        "message_id":"",
-        "time":"",
-        "unread_cnt":3
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":0,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":true
+        }
     }
 }
 ```
