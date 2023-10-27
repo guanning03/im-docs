@@ -2,9 +2,9 @@
 
 ## 关键字解释
 
-mtype —— 消息类型，可能是"text", "gif", "image", "file", "video", "audio" ,"multi"
+mtype —— 消息类型，可能是"text", "gif", "image", "file", "video", "audio" ,"multi","operation"
 
-rtype —— 群聊类型，可能是"group", "private_chat"
+rtype —— 群聊类型，可能是"group", "private_chat", "self"
 
 左侧：即前端页面中的group_list
 
@@ -73,7 +73,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 
 ```json
 {
-    "op": 0
+    "op": 0,
     "data": {
     	"rtype": "group",
         "owner_id":1,
@@ -83,6 +83,34 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 ```
 
 #### 响应
+
+私聊
+
+```json
+{
+    "op": 0,
+    "data": {
+    	"rtype": "private_chat",
+         "owner_id":1,
+    	"receivers_list":[1, 2],
+	    "room_id":1,
+	    "room_name":"",
+         "room_image":"",
+         "related_message":{
+        	"mtype":"operation",
+            "msg_op":0,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"",
+        	"index":20,
+        	"message_id":"你们已经成为好友，开始聊天吧！",
+        	"time":"",
+        }
+    }
+}
+```
+
+群聊
 
 ```json
 {
@@ -94,11 +122,24 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 	    "room_id":1,
 	    "room_name":"",
          "room_image":"",
-		"time":"",
-		"related_message":"... 创建群聊，群成员： ...."
+         "related_message":{
+        	"mtype":"operation",
+            "msg_op":0,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"",
+        	"index":20,
+        	"message_id":"... 创建了群聊，群聊成员有：...",
+        	"time":"",
+        }
     }
 }
 ```
+
+#### 异常响应
+
+1. 如果 `response["data"]["room_id"]` 为 -1, 则说明因为有些用户不存在而创建失败
+2. 如果 `response["data"]["error"]`字段存在且非空，则有各种其他异常
 
 ### 1 - 创建消息
 
@@ -556,14 +597,26 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "inviter_id":1, 
         "invitee_name":"",
         "invitee_id":2,
-        "hello_content":"你好",
-        "time":"",
-        "related_message":"... 想添加你为朋友"
+        "hello_content":"你好，我有问题想请教一下",
+        "rtype":"self",
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":14,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"",
+        	"index":20,
+        	"message_id":"[... 申请成为您的好友] 你好，我有问题想请教一下",
+        	"time":"",
+        },
     }
 }
 ```
 
-如果找不到invitee，则invitee_id为-1，通过这个可以判断是否找到了invitee
+#### 异常响应
+
+1. 响应 data 字段的 invitee_id 为 -1，说明找不到invitee
+2. 除此之外若发生其他错误， `response ["data"]["error"]`存在且非空
 
 ### 15 - 处理好友请求
 
@@ -593,11 +646,21 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "invitee_id":2,
         "inviter_id":1,
         "is_accept": true,
-        "time":"",
-        "related_message":"... 接收/拒绝了您的好友请求"
+        "related_message":{
+        	"mtype":"text",
+        	"rtype":"self",
+        	"room_id":1,
+        	"sender_id":2,
+        	"content":"",
+        	"index":20,
+        	"message_id":"[处理好友申请信息] 用户 ... 接受/拒绝了您的好友请求",
+        	"time":"",
+        },
     }
 }
 ```
+
+*加上好友后，后端会自动创建单聊，并发给前端，参见“创建群”响应格式
 
 ### 16 - 删除好友
 
