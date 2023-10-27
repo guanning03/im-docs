@@ -298,6 +298,40 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#serialize" class="md-nav__link">
+    Serialize
+  </a>
+  
+    <nav class="md-nav" aria-label="Serialize">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    MESSAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#room" class="md-nav__link">
+    ROOM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    USER
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#websocket" class="md-nav__link">
     连接websocket
   </a>
@@ -1367,6 +1401,40 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#serialize" class="md-nav__link">
+    Serialize
+  </a>
+  
+    <nav class="md-nav" aria-label="Serialize">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    MESSAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#room" class="md-nav__link">
+    ROOM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    USER
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#websocket" class="md-nav__link">
     连接websocket
   </a>
@@ -2409,6 +2477,44 @@
 <p>右侧：即前端页面中的message_list</p>
 <p>成员页：显示群聊成员的页</p>
 <p>用户页：显示用户信息的页</p>
+<h2 id="serialize">Serialize</h2>
+<h3 id="message">MESSAGE</h3>
+<pre><code class="language-json">{
+    &quot;message_id&quot;: int,
+    &quot;sender_id&quot;: int,
+    &quot;receiver_id&quot;: int,
+    &quot;index&quot;: int, 
+    &quot;msg_op&quot;:int,
+    &quot;content&quot;: str,
+    &quot;read&quot;: bool,
+    &quot;recalled&quot;: bool,
+    &quot;time&quot;: str, 
+    &quot;mtype&quot;: str, 
+    &quot;room_id&quot;:int
+}
+</code></pre>
+<h3 id="room">ROOM</h3>
+<pre><code class="language-json">{
+    &quot;room_id&quot;: int,
+    &quot;room_name&quot;: str,
+    &quot;create_time&quot;: str,
+    &quot;rtype&quot;: str,
+    &quot;image&quot;: str,
+    &quot;room_length&quot;: int, 
+    &quot;owner_id&quot;: int,
+    &quot;admin_ids&quot;: list,
+    &quot;members&quot;: list[USER],
+}
+</code></pre>
+<h3 id="user">USER</h3>
+<pre><code class="language-json">{
+    &quot;user_id&quot;: int,
+    &quot;user_name&quot;: str,
+    &quot;email&quot;: str,
+    &quot;image&quot;: str,
+    &quot;self_room_id&quot;: int
+}
+</code></pre>
 <h2 id="websocket">连接websocket</h2>
 <pre><code class="language-javascript">// 前端js
 FullWSUrl = 'ws://'
@@ -2478,18 +2584,20 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;:1,
         &quot;room_name&quot;:&quot;&quot;,
          &quot;room_image&quot;:&quot;&quot;,
-         &quot;related_message&quot;:{
-            &quot;mtype&quot;:&quot;operation&quot;,
-            &quot;msg_op&quot;:0,
-            &quot;room_id&quot;:1,
-            &quot;sender_id&quot;:1,
-            &quot;content&quot;:&quot;&quot;,
-            &quot;index&quot;:20,
-            &quot;message_id&quot;:&quot;你们已经成为好友，开始聊天吧！&quot;,
-            &quot;time&quot;:&quot;&quot;,
-             &quot;recalled&quot;:false,
-             &quot;read&quot;:true
-        }
+         &quot;related_message&quot;:
+            {
+                &quot;mtype&quot;:&quot;operation&quot;,
+                &quot;msg_op&quot;:0,
+                &quot;room_id&quot;:1,
+                &quot;sender_id&quot;:1,
+                &quot;receiver_id&quot;:2, 
+                &quot;content&quot;:&quot;&quot;,
+                &quot;index&quot;:20,
+                &quot;message_id&quot;:&quot;你们已经成为好友，开始聊天吧！&quot;,
+                &quot;time&quot;:&quot;&quot;,
+                &quot;recalled&quot;:false,
+                &quot;read&quot;:true
+            }
     }
 }
 </code></pre>
@@ -2503,11 +2611,13 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;:1,
         &quot;room_name&quot;:&quot;&quot;,
          &quot;room_image&quot;:&quot;&quot;,
-         &quot;related_message&quot;:{
+         &quot;related_message&quot;:
+        {
             &quot;mtype&quot;:&quot;operation&quot;,
             &quot;msg_op&quot;:0,
             &quot;room_id&quot;:1,
             &quot;sender_id&quot;:1,
+            &quot;receiver_id&quot;:2, 
             &quot;content&quot;:&quot;... 创建了群聊，群聊成员有：...&quot;,
             &quot;index&quot;:20,
             &quot;message_id&quot;:100,
@@ -2528,18 +2638,20 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;:1,
         &quot;room_name&quot;:&quot;&quot;,
          &quot;room_image&quot;:&quot;&quot;,
-         &quot;related_message&quot;:{
-            &quot;mtype&quot;:&quot;operation&quot;,
-            &quot;msg_op&quot;:0,
-            &quot;room_id&quot;:1,
-            &quot;sender_id&quot;:1,
-            &quot;content&quot;:&quot;您在这里可以收到其他用户的好友请求，也可以发消息给自己&quot;,
-            &quot;index&quot;:20,
-            &quot;message_id&quot;:100,
-            &quot;time&quot;:&quot;&quot;,
-             &quot;recalled&quot;:false,
-             &quot;read&quot;:true
-        }
+         &quot;related_message&quot;:
+            {
+                &quot;mtype&quot;:&quot;operation&quot;,
+                &quot;msg_op&quot;:0,
+                &quot;room_id&quot;:1,
+                &quot;sender_id&quot;:1,
+                &quot;receiver_id&quot;:1,
+                &quot;content&quot;:&quot;您在这里可以收到其他用户的好友请求，也可以发消息给自己&quot;,
+                &quot;index&quot;:20,
+                &quot;message_id&quot;:100,
+                &quot;time&quot;:&quot;&quot;,
+                 &quot;recalled&quot;:false,
+                 &quot;read&quot;:true
+            }
     }
 }
 </code></pre>
@@ -2573,8 +2685,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;sender_id&quot;:1,
         &quot;content&quot;:&quot;&quot;,
         &quot;related_message&quot;:{
-            &quot;mtype&quot;:&quot;operation&quot;,
-            &quot;msg_op&quot;:0,
+            &quot;mtype&quot;:&quot;text&quot;,
+            &quot;msg_op&quot;:1,
             &quot;room_id&quot;:1,
             &quot;sender_id&quot;:1,
             &quot;content&quot;:&quot;&quot;,
@@ -2582,7 +2694,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
             &quot;message_id&quot;:1,
             &quot;time&quot;:&quot;&quot;,
              &quot;recalled&quot;:false,
-             &quot;read&quot;:true
+             &quot;read&quot;:false
         }
     }
 }
@@ -2897,11 +3009,14 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
             &quot;msg_op&quot;:14,
             &quot;room_id&quot;:1,
             &quot;sender_id&quot;:1,
-            &quot;content&quot;:&quot;&quot;,
+            &quot;receiver_id&quot;:2, 
+            &quot;content&quot;:&quot;[用户 ... 想申请成为您的好友] 你好，我有问题想请教一下&quot;,
             &quot;index&quot;:20,
-            &quot;message_id&quot;:&quot;[... 申请成为您的好友] 你好，我有问题想请教一下&quot;,
+            &quot;message_id&quot;:1,
             &quot;time&quot;:&quot;&quot;,
-        },
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:false
+        }
     }
 }
 </code></pre>
@@ -2931,15 +3046,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;inviter_id&quot;:1,
         &quot;is_accept&quot;: true,
         &quot;related_message&quot;:{
-            &quot;mtype&quot;:&quot;text&quot;,
-            &quot;rtype&quot;:&quot;self&quot;,
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:14,
             &quot;room_id&quot;:1,
-            &quot;sender_id&quot;:2,
-            &quot;content&quot;:&quot;&quot;,
+            &quot;sender_id&quot;:1,
+            &quot;receiver_id&quot;: 2, 
+            &quot;content&quot;:&quot;[处理好友请求] 用户 ... 接收/拒绝了您的好友申请&quot;,
             &quot;index&quot;:20,
-            &quot;message_id&quot;:&quot;[处理好友申请信息] 用户 ... 接受/拒绝了您的好友请求&quot;,
+            &quot;message_id&quot;:1,
             &quot;time&quot;:&quot;&quot;,
-        },
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:false
+        }
     }
 }
 </code></pre>
