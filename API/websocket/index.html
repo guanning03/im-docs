@@ -225,7 +225,7 @@
             
   
   <span class="md-ellipsis">
-    API文档
+    API
   </span>
   
 
@@ -235,7 +235,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            API文档
+            API
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2463,7 +2463,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;data&quot;: {
         &quot;rtype&quot;: &quot;group&quot;,
         &quot;owner_id&quot;:1,
-        &quot;members_list&quot;:[1, 2, 3, 4]
+        &quot;receivers_list&quot;:[1, 2, 3, 4]
     }
 }
 </code></pre>
@@ -2487,6 +2487,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
             &quot;index&quot;:20,
             &quot;message_id&quot;:&quot;你们已经成为好友，开始聊天吧！&quot;,
             &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:true
         }
     }
 }
@@ -2506,10 +2508,37 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
             &quot;msg_op&quot;:0,
             &quot;room_id&quot;:1,
             &quot;sender_id&quot;:1,
-            &quot;content&quot;:&quot;&quot;,
+            &quot;content&quot;:&quot;... 创建了群聊，群聊成员有：...&quot;,
             &quot;index&quot;:20,
-            &quot;message_id&quot;:&quot;... 创建了群聊，群聊成员有：...&quot;,
+            &quot;message_id&quot;:100,
             &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:true
+        }
+    }
+}
+</code></pre>
+<p>自己的聊天</p>
+<pre><code class="language-json">{
+    &quot;op&quot;: 0,
+    &quot;data&quot;: {
+        &quot;rtype&quot;: &quot;group&quot;,
+         &quot;owner_id&quot;:1,
+        &quot;receivers_list&quot;:[1],
+        &quot;room_id&quot;:1,
+        &quot;room_name&quot;:&quot;&quot;,
+         &quot;room_image&quot;:&quot;&quot;,
+         &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:0,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;content&quot;:&quot;您在这里可以收到其他用户的好友请求，也可以发消息给自己&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:100,
+            &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:true
         }
     }
 }
@@ -2543,10 +2572,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;:1,
         &quot;sender_id&quot;:1,
         &quot;content&quot;:&quot;&quot;,
-        &quot;index&quot;:&quot;&quot;,
-        &quot;message_id&quot;:&quot;&quot;,
-        &quot;time&quot;:&quot;&quot;,
-        &quot;unread_cnt&quot;:3
+        &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:0,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;content&quot;:&quot;&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:1,
+            &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:true
+        }
     }
 }
 </code></pre>
