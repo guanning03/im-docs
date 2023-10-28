@@ -1185,8 +1185,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "op":27,
     "data":{
         "sender_id":1,
-        "user_id":1,
-        "user_name":""
+        "searching_id":2,
+        "searching_name":""
     }
 }
 ```
@@ -1197,15 +1197,24 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 {
     "op":27,
     "data":{
-        "user_id":1,
-        "user_name":"",
-        "email":"",
-        "image":""
+        "sender_id":1,
+        "searching_id":2,
+        "searching_name":"",
+        "related_user":{
+            "user_id":2,
+            "user_name":"",
+            "email":"",
+            "image":"",
+            "self_room_id":1
+        }
     }
 }
 ```
 
-如果没有找到user，则user_id为-1，其余为空
+#### 异常响应 & 备注
+
+1. 如果没有找到user，则searching_id为-1
+2. searching_id和searching_name请求中有一个就行，另一个key可以不写，如果都存在，以searching_id指定的用户为准
 
 ### 28 - 普通群成员邀请新的群成员 
 
