@@ -725,11 +725,11 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 
 ```json
 {
-	"op":15,
+    "op":15,
     "data":{
-        "invitee_id":2,
+        "invitee_id":2, 
         "inviter_id":1,
-        "is_accept": true,
+        "is_accept":true
     }
 }
 ```
