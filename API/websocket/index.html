@@ -2605,9 +2605,9 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
                 &quot;room_id&quot;:1,
                 &quot;sender_id&quot;:1,
                 &quot;receiver_id&quot;:2, 
-                &quot;content&quot;:&quot;&quot;,
+                &quot;message_id&quot;:100,
                 &quot;index&quot;:20,
-                &quot;message_id&quot;:&quot;你们已经成为好友，开始聊天吧！&quot;,
+                &quot;content&quot;:&quot;你们已经成为好友，开始聊天吧！&quot;,
                 &quot;time&quot;:&quot;&quot;,
                 &quot;recalled&quot;:false,
                 &quot;read&quot;:true
@@ -3115,43 +3115,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;op&quot;:17,
     &quot;data&quot;:{
         &quot;sender_id&quot;: 1,
-        &quot;rooms&quot;:[
-              {
-                &quot;room_id&quot;:1,
-                &quot;room_name&quot;:&quot;&quot;,
-                &quot;rtype&quot;: &quot;group&quot;,
-                &quot;on_top&quot;: true,  
-                &quot;unread_cnt&quot;: 3,
-                &quot;latest_update_time&quot;:&quot;&quot;,
-                &quot;latest_message&quot;:{
-                    &quot;message_id&quot;:500,
-                    &quot;sender_id&quot;:1,
-                    &quot;receiver_id&quot;:1,
-                    &quot;mtype&quot;:&quot;text&quot;,
-                    &quot;content&quot;:&quot;&quot;,
-                    &quot;read&quot;:true,
-                    &quot;recalled&quot;:false,
-                }
-              },
-                {
-                    &quot;room_id&quot;:2,
-                    &quot;room_name&quot;:&quot;&quot;,
-                    &quot;rtype&quot;: &quot;private_chat&quot;,
-                    &quot;on_top&quot;: false,
-                    &quot;unread_cnt&quot;: 3,
-                    &quot;latest_update_time&quot;:&quot;&quot;,
-                    &quot;latest_message&quot;:{
-                        &quot;message_id&quot;:501,
-                        &quot;sender_id&quot;:1,
-                        &quot;receiver_id&quot;:2,
-                        &quot;mtype&quot;:&quot;text&quot;,
-                        &quot;content&quot;:&quot;&quot;,
-                        &quot;read&quot;:true,
-                        &quot;recalled&quot;:false
-                  }
-               }
-               ...
-        ]
+        &quot;rooms&quot;:list[ROOM]
     }
 }
 </code></pre>
@@ -3173,29 +3137,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;data&quot;:{
         &quot;sender_id&quot;: 1,
         &quot;room_id&quot;: 1,
-        &quot;messages&quot;: [
-            {
-                 &quot;mtype&quot;:&quot;text&quot;,
-                 &quot;rtype&quot;:&quot;group&quot;,
-                 &quot;room_id&quot;:1,
-                 &quot;sender_id&quot;:1,
-                 &quot;content&quot;:&quot;&quot;,
-                 &quot;index&quot;:&quot;&quot;,
-                 &quot;message_id&quot;:&quot;&quot;,
-                 &quot;time&quot;:&quot;&quot;,
-            },
-            {
-                 &quot;mtype&quot;:&quot;text&quot;,
-                 &quot;rtype&quot;:&quot;group&quot;,
-                 &quot;room_id&quot;:1,
-                 &quot;sender_id&quot;:1,
-                 &quot;content&quot;:&quot;&quot;,
-                 &quot;index&quot;:&quot;&quot;,
-                 &quot;message_id&quot;:&quot;&quot;,
-                 &quot;time&quot;:&quot;&quot;,
-            },
-            ...
-        ]
+        &quot;messages&quot;: list[MESSAGE]
     }
 }
 </code></pre>
@@ -3236,21 +3178,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;op&quot;:20,
     &quot;data&quot;:{
         &quot;sender_id&quot;:1,
-        &quot;contacts&quot;:[
-            {
-                &quot;user_id&quot;:2,
-                &quot;user_name&quot;:&quot;&quot;,
-                &quot;email&quot;:&quot;&quot;,
-                &quot;image&quot;:&quot;&quot;,
-            },
-            {
-                &quot;user_id&quot;:3,
-                &quot;user_name&quot;:&quot;&quot;,
-                &quot;email&quot;:&quot;&quot;,
-                &quot;image&quot;:&quot;&quot;,                
-            }
-            ...
-        ]
+        &quot;contacts&quot;:list[USER]
     }
 }
 </code></pre>
@@ -3362,8 +3290,19 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;inviter_id&quot;:2,
         &quot;invitee_id&quot;:3,
         &quot;is_accept&quot;:true,
-        &quot;time&quot;:&quot;&quot;,
-        &quot;related_message&quot;:&quot;... 已批准 ... 加入群聊/ ... 拒绝 ... 加入群聊&quot;
+        &quot;related_message&quot;: {
+                &quot;mtype&quot;:&quot;operation&quot;,
+                &quot;msg_op&quot;:25,
+                &quot;room_id&quot;:1,
+                &quot;sender_id&quot;:1,
+                &quot;receiver_id&quot;:2, 
+                &quot;message_id&quot;:3,
+                &quot;index&quot;:20,
+                &quot;content&quot;:&quot;经 ... 审核通过，... 邀请 ... 进入群聊&quot;,
+                &quot;time&quot;:&quot;&quot;,
+                &quot;recalled&quot;:false,
+                &quot;read&quot;:true
+        }
     }   
 }
 </code></pre>
@@ -3383,7 +3322,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;op&quot;:26,
     &quot;data&quot;:{
         &quot;sender_id&quot;:1,
-        &quot;time&quot;:&quot;&quot;,
+        &quot;account_deleted&quot;:true
     }
 }
 </code></pre>
@@ -3442,8 +3381,19 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;: 1,
         &quot;inviter_id&quot;: 1,
         &quot;invitee_id&quot;:2,
-        &quot;time&quot;:&quot;&quot;,
-        &quot;related_message&quot;:&quot;... 请求邀请 ... 进入群聊&quot;
+        &quot;related_message&quot;: {
+                &quot;mtype&quot;:&quot;operation&quot;,
+                &quot;msg_op&quot;:25,
+                &quot;room_id&quot;:1,
+                &quot;sender_id&quot;:1,
+                &quot;receiver_id&quot;:2, 
+                &quot;message_id&quot;:3,
+                &quot;index&quot;:20,
+                &quot;content&quot;:&quot;... 想邀请 ... 进入群聊，审核中&quot;,
+                &quot;time&quot;:&quot;&quot;,
+                &quot;recalled&quot;:false,
+                &quot;read&quot;:true
+        }
     }
 }
 </code></pre>
