@@ -304,8 +304,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "inviter_id": 1,
         "invitee_id":2,
         "room_name":"",
-        "time":"",
-        "related_message":"... 邀请 ... 进入群聊",
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":2,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"... 邀请 ... 加入了群聊",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":false
+        }
     }
 }
 ```
@@ -336,8 +346,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "data":{
         "room_id":1,
         "old_member_id":1,
-        "related_message":"... 退出群聊",
-        "time": ""
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":3,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"... 退出了群聊",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":false
+        }
     }
 }
 ```
@@ -370,8 +390,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "room_id":1,
         "sender_id":1,
         "kicked_id":2,
-        "time": "",
-        "related_message": "... 被踢出群聊"
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":4,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"... 被 ... 踢出群聊",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":false
+        }        
     }
 }
 ```
@@ -404,7 +434,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "room_id":1,
         "sender_id":1,
         "new_name":"锐科5交流群",
-        "related_message":"... 将群名由 ... 修改为 ..."
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":5,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"... 将群名修改为 ...",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":false
+        }
     }
 }
 ```
@@ -449,8 +490,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "room_id":1,
         "rtype":"group",
         "sender_id":1,
-        "related_message":"群主 ... 已解散群聊",
-        "time": ""
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":7,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"群主 ... 已解散群聊",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":false
+        }
     }
 }
 ```
