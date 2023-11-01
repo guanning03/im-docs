@@ -2734,8 +2734,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;inviter_id&quot;: 1,
         &quot;invitee_id&quot;:2,
         &quot;room_name&quot;:&quot;&quot;,
-        &quot;time&quot;:&quot;&quot;,
-        &quot;related_message&quot;:&quot;... 邀请 ... 进入群聊&quot;,
+        &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:2,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;content&quot;:&quot;... 邀请 ... 加入了群聊&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:1,
+            &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:false
+        }
     }
 }
 </code></pre>
@@ -2757,8 +2767,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;data&quot;:{
         &quot;room_id&quot;:1,
         &quot;old_member_id&quot;:1,
-        &quot;related_message&quot;:&quot;... 退出群聊&quot;,
-        &quot;time&quot;: &quot;&quot;
+        &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:3,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;content&quot;:&quot;... 退出了群聊&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:1,
+            &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:false
+        }
     }
 }
 </code></pre>
@@ -2782,8 +2802,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;:1,
         &quot;sender_id&quot;:1,
         &quot;kicked_id&quot;:2,
-        &quot;time&quot;: &quot;&quot;,
-        &quot;related_message&quot;: &quot;... 被踢出群聊&quot;
+        &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:4,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;content&quot;:&quot;... 被 ... 踢出群聊&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:1,
+            &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:false
+        }        
     }
 }
 </code></pre>
@@ -2807,7 +2837,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;:1,
         &quot;sender_id&quot;:1,
         &quot;new_name&quot;:&quot;锐科5交流群&quot;,
-        &quot;related_message&quot;:&quot;... 将群名由 ... 修改为 ...&quot;
+        &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:5,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;content&quot;:&quot;... 将群名修改为 ...&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:1,
+            &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:false
+        }
     }
 }
 </code></pre>
@@ -2837,8 +2878,18 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         &quot;room_id&quot;:1,
         &quot;rtype&quot;:&quot;group&quot;,
         &quot;sender_id&quot;:1,
-        &quot;related_message&quot;:&quot;群主 ... 已解散群聊&quot;,
-        &quot;time&quot;: &quot;&quot;
+        &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;operation&quot;,
+            &quot;msg_op&quot;:7,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;content&quot;:&quot;群主 ... 已解散群聊&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:1,
+            &quot;time&quot;:&quot;&quot;,
+             &quot;recalled&quot;:false,
+             &quot;read&quot;:false
+        }
     }
 }
 </code></pre>
