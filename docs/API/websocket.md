@@ -151,9 +151,9 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
                 "room_id":1,
                 "sender_id":1,
                 "receiver_id":2, 
-                "content":"",
+                "message_id":100,
                 "index":20,
-                "message_id":"你们已经成为好友，开始聊天吧！",
+                "content":"你们已经成为好友，开始聊天吧！",
                 "time":"",
                 "recalled":false,
                 "read":true
@@ -818,43 +818,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "op":17,
     "data":{
         "sender_id": 1,
-        "rooms":[
-              {
-                "room_id":1,
-                "room_name":"",
-                "rtype": "group",
-                "on_top": true,  
-                "unread_cnt": 3,
-                "latest_update_time":"",
-                "latest_message":{
-                    "message_id":500,
-                    "sender_id":1,
-                    "receiver_id":1,
-                    "mtype":"text",
-                    "content":"",
-                    "read":true,
-                    "recalled":false,
-                }
-              },
-                {
-                    "room_id":2,
-                    "room_name":"",
-                    "rtype": "private_chat",
-                    "on_top": false,
-                    "unread_cnt": 3,
-                    "latest_update_time":"",
-                    "latest_message":{
-                        "message_id":501,
-                        "sender_id":1,
-                        "receiver_id":2,
-                        "mtype":"text",
-                        "content":"",
-                        "read":true,
-                        "recalled":false
-                  }
-               }
-               ...
-        ]
+        "rooms":list[ROOM]
     }
 }
 ```
@@ -885,29 +849,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "data":{
         "sender_id": 1,
         "room_id": 1,
-        "messages": [
-            {
-                 "mtype":"text",
-        	     "rtype":"group",
-                 "room_id":1,
-                 "sender_id":1,
-                 "content":"",
-                 "index":"",
-                 "message_id":"",
-                 "time":"",
-            },
-            {
-                 "mtype":"text",
-        	     "rtype":"group",
-                 "room_id":1,
-                 "sender_id":1,
-                 "content":"",
-                 "index":"",
-                 "message_id":"",
-                 "time":"",
-            },
-            ...
-        ]
+	    "messages": list[MESSAGE]
     }
 }
 ```
@@ -966,21 +908,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "op":20,
     "data":{
         "sender_id":1,
-        "contacts":[
-            {
-                "user_id":2,
-                "user_name":"",
-                "email":"",
-                "image":"",
-            },
-            {
-                "user_id":3,
-                "user_name":"",
-                "email":"",
-                "image":"",                
-            }
-            ...
-        ]
+        "contacts":list[USER]
     }
 }
 ```
@@ -1137,8 +1065,19 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "inviter_id":2,
         "invitee_id":3,
         "is_accept":true,
-        "time":"",
-        "related_message":"... 已批准 ... 加入群聊/ ... 拒绝 ... 加入群聊"
+        "related_message": {
+                "mtype":"operation",
+                "msg_op":25,
+                "room_id":1,
+                "sender_id":1,
+                "receiver_id":2, 
+                "message_id":3,
+                "index":20,
+                "content":"经 ... 审核通过，... 邀请 ... 进入群聊",
+                "time":"",
+                "recalled":false,
+                "read":true
+        }
     }   
 }
 ```
@@ -1167,7 +1106,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "op":26,
     "data":{
         "sender_id":1,
-        "time":"",
+        "account_deleted":true
     }
 }
 ```
@@ -1244,8 +1183,19 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "room_id": 1,
         "inviter_id": 1,
         "invitee_id":2,
-        "time":"",
-        "related_message":"... 请求邀请 ... 进入群聊"
+        "related_message": {
+                "mtype":"operation",
+                "msg_op":25,
+                "room_id":1,
+                "sender_id":1,
+                "receiver_id":2, 
+                "message_id":3,
+                "index":20,
+                "content":"... 想邀请 ... 进入群聊，审核中",
+                "time":"",
+                "recalled":false,
+                "read":true
+        }
     }
 }
 ```
