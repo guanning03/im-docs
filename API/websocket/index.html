@@ -2532,8 +2532,13 @@
     &quot;owner_id&quot;: int,
     &quot;admin_ids&quot;: list,
     &quot;members&quot;: list[USER],
+    &quot;top&quot;: bool,
+    &quot;no_disturb&quot;: bool,
+    &quot;unread_cnt&quot;: int,
+    &quot;latest_message&quot;: MESSAGE
 }
 </code></pre>
+<p>备注：后面三个字段是因人而异的。后端会根据查询者自动计算。</p>
 <h3 id="user">USER</h3>
 <pre><code class="language-json">{
     &quot;user_id&quot;: int,
