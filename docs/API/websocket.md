@@ -47,8 +47,14 @@ rtype —— 群聊类型，可能是"group", "private_chat", "self"
     "owner_id": int,
     "admin_ids": list,
     "members": list[USER],
+    "top": bool,
+    "no_disturb": bool,
+    "unread_cnt": int,
+    "latest_message": MESSAGE
 }
 ```
+
+备注：后面三个字段是因人而异的。后端会根据查询者自动计算。
 
 ### USER
 
