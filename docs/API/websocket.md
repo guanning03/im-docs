@@ -868,7 +868,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 {
 	"op":17,
     "data":{
-        "sender_id": 1,
+        "sender_id": 1
     }
 }
 ```
