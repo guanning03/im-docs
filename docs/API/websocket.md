@@ -281,7 +281,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 2 - 群主或群管理员邀请新的群成员（协议已修改，代码未完成）
+### 2 - 群主或群管理员邀请新的群成员（已完成） 
 
 #### 发请求时机
 
@@ -326,7 +326,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 3 - 退出群（协议已修改，代码未完成）
+### 3 - 退出群（已完成）
 
 #### 发请求时机
 
@@ -339,7 +339,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "op":3,
     "data":{
         "room_id":1,
-        "old_member_id":1,
+        "old_member_id":1
     }
 }
 ```
@@ -368,7 +368,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 4 - 踢出群聊（协议已修改，代码未完成）
+### 4 - 踢出群聊（已完成）
 
 #### 发请求时机
 
@@ -382,7 +382,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "data":{
         "room_id":1,
         "sender_id":1,
-        "kicked_id":2,
+        "kicked_id":2
     }
 }
 ```
@@ -412,7 +412,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 5 - 修改群名（协议已修改，代码未完成）
+### 5 - 修改群名（已完成）
 
 #### 发请求时机
 
@@ -512,7 +512,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 8 - 删除消息（未完成）
+### 8 - 删除消息（已完成）
 
 #### 发请求时机
 
@@ -541,13 +541,24 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "room_id":1,
         "rtype":"group",
         "sender_id":1,
-        "message_id":10000,
-        "time":"",
+        "message_id":10000
     }
 }
 ```
 
-### 9 - 撤回消息（未完成）
+#### 备注
+
+- 方便起见，self_room中的消息不可撤回，不可删除
+
+### 9 - 撤回消息（已完成）
+
+#### 规则（这些功能文档中规定的…… sad）
+
+> 群主与群管理员可以⽆视撤回消息的时间约束直接撤回消息
+>
+> 群主可以撤回任何消息，群管理员仅能撤回⾮群主、⾮群管理员的群成员的消息
+>
+> 普通成员撤回自己的消息时有两分钟的时间限制
 
 #### 发请求条件
 
@@ -577,13 +588,19 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "rtype":"group",
         "sender_id":1,
         "index":500,
-        "message_id":10000,
-        "time":"",
+        "related_message":MESSAGE
     }
 }
 ```
 
-### 10 - 设置管理员（未完成）
+#### 备注
+
+- 撤回并不是消息被删了，而是消息的内容变成了"... 撤回了一条消息"
+- 前端用响应中的"related_message"**替换**原来那条消息
+- 方便起见，self_room中的消息不可撤回，不可删除
+- 已经撤回的消息不允许删除
+
+### 10 - 设置管理员（已完成）
 
 #### 发请求条件
 
@@ -611,13 +628,23 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "room_id":1,
         "sender_id":1,
         "new_admin_id":2,
-        "time":"",
-        "related_message":"群主 ... 将 ... 添加为群管理员"
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":10,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"群主 ... 将 ... 添加为群管理员",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":false
+        }
     }
 }
 ```
 
-### 11 - 取消管理员（未完成）
+### 11 - 取消管理员（已完成）
 
 #### 发请求条件
 
@@ -646,12 +673,23 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "sender_id":1,
         "old_admin_id":2,
         "time":"",
-        "related_message":"群主 ... 取消了 ... 的群管理员资格"
+        "related_message":{
+        	"mtype":"operation",
+            "msg_op":11,
+        	"room_id":1,
+        	"sender_id":1,
+        	"content":"群主 ... 取消了 ... 的群管理员资格",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+             "recalled":false,
+             "read":false
+        }
     }
 }
 ```
 
-###  12 - 转让群主（未完成）
+###  12 - 转让群主（已完成）
 
 #### 发请求条件
 
@@ -885,7 +923,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 18 -  加载某一个群聊的所有历史消息（协议已修改，代码未完成）
+### 18 -  加载某一个群聊的所有历史消息（已完成）
 
 #### 发请求条件
 
@@ -975,7 +1013,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 21 - 设置消息免打扰（未完成）
+### 21 - 设置消息免打扰（已完成）
 
 #### 发请求时机
 
@@ -1005,7 +1043,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 22 - 取消消息免打扰（未完成）
+### 22 - 取消消息免打扰（已完成）
 
 #### 发请求时机
 
@@ -1035,7 +1073,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 23 - 置顶聊天（未完成）
+### 23 - 置顶聊天（已完成）
 
 #### 发请求时机
 
@@ -1065,7 +1103,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 24 - 取消置顶聊天（未完成）
+### 24 - 取消置顶聊天（已完成）
 
 #### 发请求时机
 
