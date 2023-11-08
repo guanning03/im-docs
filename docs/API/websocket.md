@@ -658,7 +658,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "data":{
         "room_id":1,
         "sender_id":1,
-        "old_admin_id":2,
+        "old_admin_id":2
     }
 }
 ```
@@ -752,7 +752,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "sender_id":1,
         "announcement":"",
         "time":"",
-        "related_message":"@所有人：\n ...",
+        "related_message":"@所有人：\n ..."
     }
 }
 ```
