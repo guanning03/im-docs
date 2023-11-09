@@ -1245,7 +1245,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
             "email":"",
             "image":"",
             "self_room_id":1
-        }
+        },
+        "is_contact": true
     }
 }
 ```
