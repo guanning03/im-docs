@@ -321,7 +321,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         	"time":"",
              "recalled":false,
              "read":false
-        }
+        },
+        "related_room": ROOM
     }
 }
 ```
