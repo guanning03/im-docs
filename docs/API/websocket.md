@@ -1291,7 +1291,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "invitee_id":2,
         "related_message": {
                 "mtype":"operation",
-                "msg_op":25,
+                "msg_op":28,
                 "room_id":1,
                 "sender_id":1,
                 "receiver_id":2, 
