@@ -30,7 +30,8 @@ rtype —— 群聊类型，可能是"group", "private_chat", "self"
     "recalled": bool,
     "time": str, 
     "mtype": str, 
-    "room_id":int
+    "room_id":int,
+    "at_ids": list[int]
 }
 ```
 
@@ -249,7 +250,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         "rtype":"group",
         "room_id":1,
         "sender_id":1,
-        "content":""
+        "content":"",
+        "at_ids":[2, 3]
     }
 }
 ```
@@ -274,8 +276,9 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         	"index":20,
         	"message_id":1,
         	"time":"",
-             "recalled":false,
-             "read":false
+            "recalled":false,
+            "read":false,
+            "at_ids":[2, 3]
         }
     }
 }
@@ -319,8 +322,8 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
         	"index":20,
         	"message_id":1,
         	"time":"",
-             "recalled":false,
-             "read":false
+            "recalled":false,
+            "read":false
         },
         "related_room": ROOM
     }
