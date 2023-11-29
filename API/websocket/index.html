@@ -666,11 +666,11 @@
           <li class="md-nav__item">
   <a href="#7-" class="md-nav__link">
     <span class="md-ellipsis">
-      7 - 解散群（协议已修改，代码未完成）
+      7 - 解散群（已完成）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="7 - 解散群（协议已修改，代码未完成）">
+    <nav class="md-nav" aria-label="7 - 解散群（已完成）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1215,11 +1215,11 @@
           <li class="md-nav__item">
   <a href="#19-" class="md-nav__link">
     <span class="md-ellipsis">
-      19 - 阅读了某一个群聊的所有消息（协议已修改，代码未完成）
+      19 - 阅读了某一个群聊的所有消息（已完成）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="19 - 阅读了某一个群聊的所有消息（协议已修改，代码未完成）">
+    <nav class="md-nav" aria-label="19 - 阅读了某一个群聊的所有消息（已完成）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2064,11 +2064,11 @@
           <li class="md-nav__item">
   <a href="#7-" class="md-nav__link">
     <span class="md-ellipsis">
-      7 - 解散群（协议已修改，代码未完成）
+      7 - 解散群（已完成）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="7 - 解散群（协议已修改，代码未完成）">
+    <nav class="md-nav" aria-label="7 - 解散群（已完成）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2613,11 +2613,11 @@
           <li class="md-nav__item">
   <a href="#19-" class="md-nav__link">
     <span class="md-ellipsis">
-      19 - 阅读了某一个群聊的所有消息（协议已修改，代码未完成）
+      19 - 阅读了某一个群聊的所有消息（已完成）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="19 - 阅读了某一个群聊的所有消息（协议已修改，代码未完成）">
+    <nav class="md-nav" aria-label="19 - 阅读了某一个群聊的所有消息（已完成）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3443,7 +3443,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 <h4 id="_22">请求</h4>
 <p>还没想好，之后补全</p>
 <h4 id="_23">响应</h4>
-<h3 id="7-">7 - 解散群（协议已修改，代码未完成）</h3>
+<h3 id="7-">7 - 解散群（已完成）</h3>
 <h4 id="_24">发请求时机</h4>
 <p>​   群主点击 rtype 为 "group" 的群聊成员页中的"解散群聊" 按钮</p>
 <h4 id="_25">请求</h4>
@@ -3809,7 +3809,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     }
 }
 </code></pre>
-<h3 id="19-">19 - 阅读了某一个群聊的所有消息（协议已修改，代码未完成）</h3>
+<h3 id="19-">19 - 阅读了某一个群聊的所有消息（已完成）</h3>
 <h4 id="_64">发请求时机</h4>
 <p>​   用户点击左侧某未读消息数不为0的群聊</p>
 <h4 id="_65">请求</h4>
@@ -3827,6 +3827,19 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;data&quot;:{
         &quot;sender_id&quot;:1,
         &quot;room_id&quot;:1,
+        &quot;related_message&quot;:{
+            &quot;mtype&quot;:&quot;read&quot;,
+            &quot;msg_op&quot;:19,
+            &quot;room_id&quot;:1,
+            &quot;sender_id&quot;:1,
+            &quot;receiver_id&quot;: 2,
+            &quot;content&quot;:&quot;id为{sender_id}的用户阅读了群聊{room_id}的所有消息&quot;,
+            &quot;index&quot;:20,
+            &quot;message_id&quot;:1,
+            &quot;time&quot;:&quot;&quot;,
+            &quot;recalled&quot;:false,
+            &quot;read&quot;:true
+        }
     }
 }
 </code></pre>
