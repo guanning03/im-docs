@@ -3462,22 +3462,11 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     &quot;data&quot;:{
         &quot;room_id&quot;:1,
         &quot;rtype&quot;:&quot;group&quot;,
-        &quot;sender_id&quot;:1,
-        &quot;related_message&quot;:{
-            &quot;mtype&quot;:&quot;operation&quot;,
-            &quot;msg_op&quot;:7,
-            &quot;room_id&quot;:1,
-            &quot;sender_id&quot;:1,
-            &quot;content&quot;:&quot;群主 ... 已解散群聊&quot;,
-            &quot;index&quot;:20,
-            &quot;message_id&quot;:1,
-            &quot;time&quot;:&quot;&quot;,
-             &quot;recalled&quot;:false,
-             &quot;read&quot;:false
-        }
+        &quot;sender_id&quot;:1
     }
 }
 </code></pre>
+<p>相关的成员下次登录后就没有这个群了。这次登录的行为，前端怎么方便怎么来。</p>
 <h3 id="8-">8 - 删除消息（已完成）</h3>
 <h4 id="_27">发请求时机</h4>
 <p>​   用户右键某消息，点击删除</p>
