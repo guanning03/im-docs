@@ -499,22 +499,12 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "data":{
         "room_id":1,
         "rtype":"group",
-        "sender_id":1,
-        "related_message":{
-        	"mtype":"operation",
-            "msg_op":7,
-        	"room_id":1,
-        	"sender_id":1,
-        	"content":"群主 ... 已解散群聊",
-        	"index":20,
-        	"message_id":1,
-        	"time":"",
-             "recalled":false,
-             "read":false
-        }
+        "sender_id":1
     }
 }
 ```
+
+相关的成员下次登录后就没有这个群了。这次登录的行为，前端怎么方便怎么来。
 
 ### 8 - 删除消息（已完成）
 
