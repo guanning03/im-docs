@@ -472,7 +472,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 
 #### 响应
 
-### 7 - 解散群（协议已修改，代码未完成）
+### 7 - 解散群（已完成）
 
 #### 发请求时机
 
@@ -948,7 +948,7 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
 }
 ```
 
-### 19 - 阅读了某一个群聊的所有消息（协议已修改，代码未完成）
+### 19 - 阅读了某一个群聊的所有消息（已完成）
 
 #### 发请求时机
 
@@ -974,6 +974,19 @@ SEND_INVITE_ROOM_MEMBER_REQUEST = 28 # 普通群成员邀请新的群成员
     "data":{
         "sender_id":1,
         "room_id":1,
+        "related_message":{
+        	"mtype":"read",
+            "msg_op":19,
+        	"room_id":1,
+        	"sender_id":1,
+            "receiver_id": 2,
+        	"content":"id为{sender_id}的用户阅读了群聊{room_id}的所有消息",
+        	"index":20,
+        	"message_id":1,
+        	"time":"",
+            "recalled":false,
+            "read":true
+        }
     }
 }
 ```
