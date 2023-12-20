@@ -1,7 +1,13 @@
 #!/bin/sh
 
-# Activate the conda environment and run subsequent commands
-/home/guanning/miniconda3/condabin/conda run -n RISCV git add .
-/home/guanning/miniconda3/condabin/conda run -n RISCV git commit -m "自动提交"
-/home/guanning/miniconda3/condabin/conda run -n RISCV git push origin master
-/home/guanning/miniconda3/condabin/conda run -n RISCV mkdocs gh-deploy
+CONDA_PATH=$(conda info --base)
+source $CONDA_PATH/etc/profile.d/conda.sh
+conda init
+conda activate base
+git config --global user.email "auto@example.com"
+git config --global user.name "auto"
+pip install mkdocs mkdocs-material
+git add .
+git commit -m "自动提交"
+git push origin master
+mkdocs gh-deploy
