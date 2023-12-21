@@ -1,2 +1,8 @@
 site_name: IM项目文档
 theme: material
+
+nav:
+- 测试脚本: ./API/UserManual.md
+- API文档: 
+  - WebSocket协议: ./API/websocket.md
+  - HTTP协议: ./API/http.md
